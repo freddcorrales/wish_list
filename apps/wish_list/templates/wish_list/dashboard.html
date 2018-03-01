@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Wish List</title>
+</head>
+<body>
+        <a href="/logout">Logout</a>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li {% if message.tags %} class = '{{message.tags}}' {% endif %}> {{message}} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    <h1>Hello, {{request.session.name}}</h1>
+    <h3>Your wish List</h3>
+        <table border = 1>
+            <tr>
+                <th> Item </th>
+                <th> Added by </th>
+                <th> Date Added </th> <!--created_by -->
+                <th> Action </th>
+            </tr>
+            {% for item in my_list %}
+            <tr>
+                <td><a href='/wish_items/{{item.id}}'>{{item.item}}</a></td>
+                <td>{{item.users.first.name}}</a></td>
+                <td>{{item.created_at|date:"M d, Y" }}</td>
+                <td><a href = '/delete/{{item.id}}'>Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table> <br><br>
+
+
+
+    <h3>Other users wish list</h3>
+    <table border = 1>
+            <tr>
+                <th> Item </th>
+                <th> Added by </th>
+                <th> Date Added </th> <!--created_by -->
+                <th> Action </th>
+            </tr>
+            {% for items in all_lists %}
+            <tr>
+                <td><a href='/wish_items/{{items.id}}'>{{items.item}}</a></td>
+                <td>{{items.users.first.name}}</a></td>
+                <td>{{items.created_at|date:"M d, Y" }}</td>
+                <td><a href="/join/{{items.id}}">Add to my wish list</a></td>
+            </tr>
+            {% endfor %}
+        </table> <br><br>
+
+    
+    <a href = '/wish_items/create'> Add Item</a>
+    
+
+</body>
+</html>

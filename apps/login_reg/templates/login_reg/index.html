@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Login/Registration </title>
+</head>
+<body>
+    <h1> Welcome! </h1>
+    <fieldset>
+        <legend> Register </legend>
+        <form action = '/register' method = 'post'>
+            {% csrf_token %}
+            Name: <input type = 'text' name = 'name'> <br>
+            Username: <input type = 'text' name = 'username'> <br>
+            Password: <input type = 'password' name = 'password'> <br>
+            <p><small>'Password must be at least 8 characters! </small></p>
+            Confirm PW: <input type = 'password' name = 'confirm'> <br>
+            Date Hired: <input type = 'date' name = 'date_hired'> <br>
+            <input type='submit' value='Register'>
+        </form>
+    </fieldset>
+    <hr>
+
+    <fieldset>
+        <legend> Login </legend>
+        <form action = '/login' method = 'post'> 
+            {% csrf_token %}
+            Username: <input type = 'text' name = 'username'> <br>
+            Password: <input type = 'password' name = 'password'> <br>
+            <input type='submit' value='Login'>
+        </form>
+    </fieldset>
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+            <li {% if message.tags%} class = '{{message.tags}}'{% endif %}> {{message}} </li>
+        {% endfor %}
+    </ul>
+    {% endif %}    
+</body>
+</html>
