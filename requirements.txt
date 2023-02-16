@@ -7,7 +7,7 @@ cffi==1.11.4
 click==6.7
 configparser==3.5.0
 decorator==4.2.1
-Django==1.10
+Django==3.2.18
 enum34==1.1.6
 Flask==0.12.2
 futures==3.2.0
@@ -35,5 +35,5 @@ six==1.11.0
 traitlets==4.3.2
 virtualenv==15.1.0
 wcwidth==0.1.7
-Werkzeug==0.14.1
+Werkzeug==2.2.3
 wrapt==1.10.11
